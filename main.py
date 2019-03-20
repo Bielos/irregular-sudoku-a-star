@@ -4,7 +4,7 @@
 
 Irregular 6x6 Sudoku using A*, the board (state) will be a string like this:
 '0-0-0-0-1-0
-0-3-0-0-2-1
+0-3-0-0-2-0
 0-2-0-0-0-0
 0-0-0-0-5-0
 0-0-0-1-0-0
@@ -12,7 +12,7 @@ Irregular 6x6 Sudoku using A*, the board (state) will be a string like this:
 
 where 0 means an empty cell. In order to control the groups inside the board another string is used.
 The value of each position represents the group of that cell (from 1 to 6), for the example
-above (https://sudoku.gratis/jigsaw-sudoku/answer.php?id=MGTuU14XOiTnMY5u) the string is:
+above (https://i.imgur.com/ckQ8rn7.png) the string is:
 
 '1-1-1-1-1-2
 4-4-3-1-2-2
@@ -27,7 +27,6 @@ from __future__ import print_function
 
 import sudokutils as utils
 from simpleai.search import SearchProblem, astar
-from simpleai.search.viewers import WebViewer
 
 initial_board_str = '''0-0-0-0-1-0
 0-3-0-0-2-0
@@ -96,6 +95,7 @@ print(state)
 
 # For visuals
 '''
+from simpleai.search.viewers import WebViewer
 my_viewer = WebViewer()
 my_problem = IrregularSudokuProblem(initial_state=initial_state)
 result = astar(my_problem, viewer=my_viewer)
