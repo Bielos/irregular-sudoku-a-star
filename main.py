@@ -23,24 +23,24 @@ above (https://i.imgur.com/ckQ8rn7.png) the string is:
 
 Lists will be use to manage operations along the code.
 '''
-from __future__ import print_function
+import time
 
 import sudokutils as utils
 from simpleai.search import SearchProblem, astar
 
-initial_board_str = '''0-0-0-0-1-0
-0-3-0-0-2-0
-0-2-0-0-0-0
-0-0-0-0-5-0
-0-0-0-1-0-0
-0-6-5-2-0-0'''
+initial_board_str = '''0-0-0-0-3-0
+0-0-0-0-0-2
+6-0-1-0-0-0
+0-0-0-0-0-5
+0-0-0-0-0-0
+0-4-0-0-0-0'''
 
-initial_group_str = '''1-1-1-1-1-2
-4-4-3-1-2-2
-4-3-3-3-2-2
-4-4-3-3-2-6
-4-5-6-6-6-6
-5-5-5-5-5-6'''
+initial_group_str = '''5-5-5-6-6-6
+4-4-5-5-6-3
+1-4-5-6-6-3
+1-4-4-4-3-3
+1-2-2-2-2-3
+1-1-1-2-2-3'''
 
 groups_list = utils.string_to_list(initial_group_str)
 
@@ -88,10 +88,16 @@ initial_state_list[next_actual_row][next_actual_col] = 'X'
 initial_state = utils.list_to_string(initial_state_list) 
 
 my_problem = IrregularSudokuProblem(initial_state=initial_state)
+start = time.time()
 result = astar(my_problem)
+finish = time.time() - start
 for action, state in result.path():
     print('Insert number', action)
+print('-------------')
+print('FINAL STATE')
+print('-------------')
 print(state)
+print('Total time: '+str(finish)+"s")
 
 # For visuals
 '''
